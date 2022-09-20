@@ -1,0 +1,50 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="start center" color="primary" class="mat-elevation-z8">
+  <h1>
+    Angular Monaco Editor library demo
+  </h1>
+</mat-toolbar>
+<div class="editor-container" fxLayout="column">
+  <h2 class=" mat-headline">Custom theme example</h2>
+  <ngx-monaco-editor fxFlex [options]="editorOptions" [(ngModel)]="code" (init)="editorInit($event)">
+  </ngx-monaco-editor>
+</div>
+
+<div>
+
+</div>
+
+<div fxLayout="column">
+  <h2 class=" mat-headline">JSON validation example</h2>
+  <mat-card fxLayout="row">
+    <div fxFlex="30" fxLayout="column" class="form-infos">
+      <h4 class="mat-title">Form control</h4>
+      <div class="form-info">
+        <span >Valid:</span>
+        <span [style.color]="reactiveForm['controls']?.code?.valid ? 'green' : 'red'"
+          >&nbsp;{{ reactiveForm['controls']?.code?.valid }}</span>
+      </div>
+      <div class="form-info">
+        <span>Dirty:</span>
+        <span [style.color]="reactiveForm.dirty ? 'green' : 'red'">&nbsp;{{
+            reactiveForm['controls']?.code?.dirty }}</span>
+      </div>d
+      <div class="form-info">
+        <span>Touched:</span>
+        <span [style.color]="reactiveForm['controls']?.code?.touched ? 'green' : 'red'"
+          >&nbsp;{{ reactiveForm['controls']?.code?.touched }}</span>
+      </div>
+      <div class="form-info">
+        <span>Value</span>
+        <pre>{{ reactiveForm.value?.code }}</pre>
+      </div>
+      <div class="form-info">
+        <span>Errors</span>
+        <pre>{{ reactiveForm['controls']?.code?.errors  | json }}</pre>
+      </div>
+    </div>
+    <form fxFlex [formGroup]="reactiveForm">
+      <ngx-monaco-editor formControlName="code" [options]="mergeOptions({ language:'json' })" [uri]="modelUri">
+      </ngx-monaco-editor>
+    </form>
+  </mat-card>
+</div>
